@@ -4,12 +4,9 @@ import { JsonRpcProvider, SwapWidget, Theme, darkTheme, lightTheme } from '@unis
 import '@uniswap/widgets/fonts.css'
 import { useState } from 'react';
 import './swap-card.css';
-import { useTheme } from 'next-themes';
 
 export default function SwapCard() {
 
-  const {  theme } = useTheme()
-console.log('them global  ', theme)
   const hideConnectionUI = false;
 
   const [provider, setProvider] = useState<JsonRpcProvider>();
@@ -29,7 +26,7 @@ console.log('them global  ', theme)
 
   return (
     <>
-        <SwapWidget  disableBranding={true} theme={theme == 'light' ? themeLight : themeDark} hideConnectionUI={hideConnectionUI} />
+        <SwapWidget  disableBranding={true}  hideConnectionUI={hideConnectionUI} />
       
     </>
   );
