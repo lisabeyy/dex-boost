@@ -7,7 +7,7 @@ banner:
   button:
     enable: true
     label: "Configure Widget"
-    link: "/about"
+    link: "/customizer"
 
 # Features
 features:
@@ -21,4 +21,4 @@ features:
     button:
       enable: false
       label: "Get Started Now"
-      link: "#"
+      link: "/customizer"

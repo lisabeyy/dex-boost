@@ -19,8 +19,11 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.0.1",
+    "@uniswap/widgets": "2.18.0",
     "date-fns": "^3.3.1",
     "disqus-react": "^1.1.5",
+    "ethers": "^5.6.4",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "marked": "^11.2.0",
@@ -35,7 +38,9 @@
     "react-lite-youtube-embed": "^2.4.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^3.0.1",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "viem": "^2.7.20",
+    "wagmi": "^2.5.7"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
@@ -47,6 +52,7 @@
     "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
+    "jotai-immer": "^0.3.0",
     "postcss": "^8.4.33",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.11",

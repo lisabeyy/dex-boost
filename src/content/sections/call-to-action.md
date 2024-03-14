@@ -6,5 +6,5 @@ description: "Build lightning-fast Uniswap integration with ease and flexibility
 button:
   enable: true
   label: "Get Started Now"
-  link: "/about"
+  link: "/customizer"
 ---

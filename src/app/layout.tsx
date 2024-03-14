@@ -59,7 +59,6 @@ export default function RootLayout({
         <TwSizeIndicator />
         <Providers>
           <Header />
-          <SearchModal />
           <main>{children}</main>
           <Footer />
         </Providers>
