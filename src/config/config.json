@@ -7,13 +7,13 @@
     "favicon": "/images/favicon.png",
     "logo": "/images/uniswap-boost.png",
     "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
-    "logo_height": "27",
+    "logo_width": "200",
+    "logo_height": "30",
     "logo_text": "Uniswap Boost"
   },
 
   "settings": {
-    "search": true,
+    "search": false,
     "sticky_header": true,
     "theme_switcher": true,
     "default_theme": "system",
