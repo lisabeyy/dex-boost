@@ -1,4 +1,3 @@
-import SearchModal from "@/components/SearchModal";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
 import TwSizeIndicator from "@/helpers/TwSizeIndicator";
