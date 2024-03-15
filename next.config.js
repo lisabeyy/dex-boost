@@ -6,6 +6,11 @@ const nextConfig = {
   basePath: config.base_path !== "/" ? config.base_path : "",
   trailingSlash: config.site.trailing_slash,
   output: 'standalone',
+  webpack: config => {
+    config.externals.push('pino-pretty', 'lokijs', 'encoding');
+    config.resolve.fallback = { fs: false };
+    return config;
+  }
 };
 
 module.exports = nextConfig;

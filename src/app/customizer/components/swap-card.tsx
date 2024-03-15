@@ -1,5 +1,4 @@
 "use client";
-import { useEthersSigner } from '@/lib/ethers';
 import { JsonRpcProvider, SwapWidget, Theme, darkTheme, lightTheme } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 import { useState } from 'react';
@@ -9,7 +8,6 @@ export default function SwapCard() {
 
   const hideConnectionUI = false;
 
-  const [provider, setProvider] = useState<JsonRpcProvider>();
   const themeDark: Theme = {
     ...darkTheme,
   }
@@ -18,9 +16,7 @@ export default function SwapCard() {
     accent: '#161e31',
    
   }
-  useEthersSigner().then((signer: any) => {
-    setProvider(signer?.provider as JsonRpcProvider);
-  });
+
 
 
 

@@ -244,11 +244,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ![image](/images/image-placeholder.png)
 
----
 
-### Youtube video
 
-<Youtube id="ZEe-IFezQok" title="Play:Youtube"/>
 
 ---
 
