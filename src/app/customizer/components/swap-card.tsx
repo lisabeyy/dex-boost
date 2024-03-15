@@ -1,29 +1,56 @@
 "use client";
-import { JsonRpcProvider, SwapWidget, Theme, darkTheme, lightTheme } from '@uniswap/widgets'
+import { SwapWidget,  darkTheme, lightTheme } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 import { useState } from 'react';
 import './swap-card.css';
+import { useTheme } from 'next-themes';
+import { ColorType } from './Customizer';
 
-export default function SwapCard() {
 
-  const hideConnectionUI = false;
+type Props = {
+  theme?: string;
+  colors?: ColorType;
+  hideConnectionUI: boolean
+};
 
-  const themeDark: Theme = {
-    ...darkTheme,
-  }
-  const themeLight: Theme = {
-    ...lightTheme,
-    accent: '#161e31',
-   
-  }
+
+
+export default function SwapCard(props: Props) {
+  let widgetTheme;
+  const { theme } = useTheme();
+  
+  widgetTheme = props.theme
+    ? props.theme === 'Dark'
+      ? darkTheme
+      : props.theme === 'Auto'
+      ? theme === 'dark'
+        ? darkTheme
+        : lightTheme
+      : lightTheme
+    : lightTheme;
+
+    console.log('widgetTheme', widgetTheme);
+    widgetTheme = {
+      ...widgetTheme,
+      primary: props?.colors?.primary ? props?.colors?.primary : widgetTheme.primary,
+      secondary: props?.colors?.secondary ? props?.colors?.secondary : widgetTheme.secondary,
+      interactive: props?.colors?.interactive ? props?.colors?.interactive : widgetTheme.interactive,
+      container: props?.colors?.container ? props?.colors?.container : widgetTheme.container,
+      module: props?.colors?.module ? props?.colors?.module : widgetTheme.module,
+      accent: props?.colors?.accent ? props?.colors?.accent : widgetTheme.accent,
+      outline: props?.colors?.outline ? props?.colors?.outline : widgetTheme.outline,
+      dialog: props?.colors?.dialog ? props?.colors?.dialog : widgetTheme.dialog,
+      error: props?.colors?.error ? props?.colors?.error : widgetTheme.error,
+      hint: props?.colors?.hint ? props?.colors?.hint : widgetTheme.hint,
+    }
+
+
 
 
 
 
   return (
-    <>
-        <SwapWidget  disableBranding={true}  hideConnectionUI={hideConnectionUI} />
+        <SwapWidget  disableBranding={true}  theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
       
-    </>
   );
 }
