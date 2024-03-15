@@ -1,7 +1,8 @@
+"use client";
 import SwapCard from "./components/swap-card";
 
 
-export default async function SwapPage() {
+export default function SwapPage() {
 
   return (
     <section className="section-sm h-screen">
