@@ -1,5 +1,12 @@
-"use client";
 import SwapCard from "./components/swap-card";
+import dynamic from "next/dynamic";
+
+// Import a component without SSR
+const NoSSRComponent = dynamic(() => import("./components/swap-card"), {
+  ssr: false, 
+});
+
+
 
 
 export default function SwapPage() {
@@ -15,7 +22,7 @@ export default function SwapPage() {
             <div className='flex items-center py-4'>
               <div className="grid gap-2">
                 <div className="grid">
-                  <SwapCard/>
+                  <NoSSRComponent/>
                 </div>
               </div>
             </div>
