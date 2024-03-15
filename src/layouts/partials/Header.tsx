@@ -8,7 +8,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 //  child navigation link interface
 export interface IChildNavigationLink {
   name: string;
