@@ -10,7 +10,8 @@ import { ColorType } from './Customizer';
 type Props = {
   theme?: string;
   colors?: ColorType;
-  hideConnectionUI: boolean
+  hideConnectionUI: boolean;
+  disableBranding: boolean;
 };
 
 
@@ -50,7 +51,7 @@ export default function SwapCard(props: Props) {
 
 
   return (
-        <SwapWidget  disableBranding={true}  theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
+        <SwapWidget  disableBranding={props.disableBranding}  theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
       
   );
 }
