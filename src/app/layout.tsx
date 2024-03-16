@@ -1,6 +1,7 @@
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
 import TwSizeIndicator from "@/helpers/TwSizeIndicator";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import Providers from "@/partials/Providers";
 import { Analytics } from "@vercel/analytics/react"
@@ -61,6 +62,7 @@ export default function RootLayout({
          
         </Providers>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
