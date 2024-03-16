@@ -35,6 +35,7 @@ export default function SwapCard(props: Props) {
       ...widgetTheme,
       primary: props?.colors?.primary ? props?.colors?.primary : widgetTheme.primary,
       secondary: props?.colors?.secondary ? props?.colors?.secondary : widgetTheme.secondary,
+      active: props?.colors?.active ? props?.colors?.active : widgetTheme.active,
       interactive: props?.colors?.interactive ? props?.colors?.interactive : widgetTheme.interactive,
       onInteractive: props?.colors?.onInteractive ? props?.colors?.onInteractive : widgetTheme.onInteractive,
       container: props?.colors?.container ? props?.colors?.container : widgetTheme.container,
@@ -43,6 +44,7 @@ export default function SwapCard(props: Props) {
       onAccent: props?.colors?.onAccent ? props?.colors?.onAccent : widgetTheme.onAccent,
       outline: props?.colors?.outline ? props?.colors?.outline : widgetTheme.outline,
       dialog: props?.colors?.dialog ? props?.colors?.dialog : widgetTheme.dialog,
+      success: props?.colors?.success ? props?.colors?.success : widgetTheme.success,
       error: props?.colors?.error ? props?.colors?.error : widgetTheme.error,
       hint: props?.colors?.hint ? props?.colors?.hint : widgetTheme.hint,
     }

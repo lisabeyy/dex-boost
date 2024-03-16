@@ -8,6 +8,7 @@ import { CopyBlock, dracula } from 'react-code-blocks';
 import Header from "@/partials/Header";
 import './Customizer.css';
 import Button from "@/shortcodes/Button";
+import { useTheme } from "next-themes";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -16,6 +17,7 @@ function classNames(...classes: string[]) {
 export type ColorType = {
   primary: string;
   secondary: string;
+  active: string;
   interactive: string;
   onInteractive: string;
   container: string;
@@ -23,13 +25,15 @@ export type ColorType = {
   accent: string;
   onAccent: string;
   outline: string;
+  success: string;
   dialog: string;
   error: string;
   hint: string;
 };
 
-const initialColor: ColorType = {
+let initialColorDark: ColorType = {
   primary: "#ffffff",
+  active: "#4b83fb",
   secondary: "#99a1bd",
   interactive: "#40444f",
   onInteractive: "#ffffff",
@@ -38,7 +42,25 @@ const initialColor: ColorType = {
   accent: "#4b83fb",
   onAccent: "#ffffff",
   outline: "#565a69",
+  success: "#27ae5f",
   dialog: "#ffffff",
+  error: "#fd4040",
+  hint: "#878d9b",
+};
+
+const initialColorLight: ColorType = {
+  active: "#4b83fb",
+  primary: "#000000",
+  secondary: "#565a69",
+  interactive: "#ced0d9",
+  onInteractive: "#000000",
+  container: "#f7f8fa",
+  module: "#e2e3e9",
+  accent: "#ff007a",
+  onAccent: "#ffffff",
+  outline: "#c3c5cb",
+  dialog: "#ffffff",
+  success: "#27ae5f",
   error: "#fd4040",
   hint: "#878d9b",
 };
@@ -46,13 +68,15 @@ const initialColor: ColorType = {
 const defaultColor: ColorType = {
   primary: "",
   secondary: "",
+  active: "",
   interactive: "",
   onInteractive: "",
   container: "",
   module: "",
   accent: "",
-  onAccent: "#ffffff",
+  onAccent: "",
   outline: "",
+  success: "",
   dialog: "",
   error: "",
   hint: "",
@@ -61,17 +85,26 @@ const defaultColor: ColorType = {
 const themeOptions = ['Auto', 'Light', 'Dark']
 const hideUiOptions = [false, true];
 export default function Customizer() {
+  const { theme } = useTheme();
+  console.log('theme', theme);
   const [selectedTheme, setSelectedTheme] = useState(themeOptions[0])
   const [selectedConnectionUI, setSelectedConnectionUi] = useState(true)
   const [selectedBrandingOption, setSelectedBrandingOption] = useState(true)
   const [themeColors, setThemeColors] = useState<ColorType>(defaultColor);
   const [openCode, setOpenCode] = useState(false);
   const [showDrawer, setShowDrawer] = useState(true);
+  const [initialColor, setInitialColor] = useState( theme == "dark" ? initialColorDark : initialColorLight);
+
   const handleColorChange = (newColor: string, type: keyof ColorType) => {
     const re = /[0-9A-Fa-f]{6}/g;
     if (re.test(newColor)) {
       setThemeColors(prev => ({ ...prev, [type]: newColor }));
     }
+  }
+
+  const handleThemeChange = (value: string) => {
+    setInitialColor( value == "Dark" ? initialColorDark : initialColorLight)
+    setSelectedTheme(value);
   }
 
   const resetVariable = () => {
@@ -83,11 +116,9 @@ export default function Customizer() {
   return (
     <>
 
-
-
       <div className="flex customizerWidget ">
         <>
-          <input type="checkbox" id="drawer-toggle" className="relative sr-only peer" checked={showDrawer} />
+          <input type="checkbox" id="drawer-toggle" className="relative sr-only peer"  checked={showDrawer} />
           <label onClick={() => setShowDrawer(!showDrawer)} className="absolute cursor-pointer hover:brightness-75 top-20 z-50 left-0 inline-block p-2 transition-all duration-500 bg-blue-500 hover:bg-blue-700 rounded-lg peer-checked:rotate-180 peer-checked:left-72">
             
 
@@ -101,7 +132,7 @@ export default function Customizer() {
 
               <div className="h-[80%] justify-center items-center overflow-y-scroll ">
                 <div className=" ml-8 mr-8 mb-4  ">
-                  <Listbox value={selectedTheme} onChange={setSelectedTheme}>
+                  <Listbox value={selectedTheme} onChange={ (e) => handleThemeChange(e)}>
                     {({ open }) => (
                       <>
                         <Listbox.Label className="w-auto block text-sm font-medium leading-6 ">Theme</Listbox.Label>
@@ -298,6 +329,13 @@ export default function Customizer() {
 
                 <div className=" ml-8 mr-8 mb-4">
                   <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
+                    Active color
+                  </label>
+                  <PopoverPicker color={themeColors.active || initialColor.active} onChange={(newColor) => handleColorChange(newColor, "active")} />
+                </div>
+
+                <div className=" ml-8 mr-8 mb-4">
+                  <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
                     Interactive color
                   </label>
                   <PopoverPicker color={themeColors.interactive || initialColor.interactive} onChange={(newColor) => handleColorChange(newColor, "interactive")} />
@@ -351,6 +389,14 @@ export default function Customizer() {
                   </label>
                   <PopoverPicker color={themeColors.dialog || initialColor.dialog} onChange={(newColor) => handleColorChange(newColor, "dialog")} />
                 </div>
+
+                <div className=" ml-8 mr-8 mb-4">
+                  <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
+                    Success color
+                  </label>
+                  <PopoverPicker color={themeColors.success || initialColor.success} onChange={(newColor) => handleColorChange(newColor, "success")} />
+                </div>
+
 
 
                 <div className=" ml-8 mr-8 mb-4">
@@ -446,6 +492,7 @@ export default function Customizer() {
           type ThemeColors = {
             primary: string;
             secondary: string;
+            active: string;
             interactive: string;
             onInteractive: string;
             container: string;
@@ -453,6 +500,7 @@ export default function Customizer() {
             accent: string;
             onAccent: onAccent;
             outline: string;
+            success: string;
             dialog: string;
             error: string;
             hint: string;
@@ -484,6 +532,7 @@ export default function Customizer() {
                 ...widgetTheme,
                 primary: "${themeColors.primary || initialColor.primary}" ,
                 secondary: "${themeColors.secondary || initialColor.secondary}",
+                active: "${themeColors.active || initialColor.active}",
                 interactive: "${themeColors.interactive || initialColor.interactive}",
                 onInteractive: "${themeColors.onInteractive || initialColor.onInteractive}",
                 container:  "${themeColors.container || initialColor.container}",
@@ -492,6 +541,7 @@ export default function Customizer() {
                 onAccent: "${themeColors.onAccent || initialColor.onAccent}",
                 outline: "${themeColors.outline || initialColor.outline}",
                 dialog: "${themeColors.dialog || initialColor.dialog}",
+                success: "${themeColors.success || initialColor.success}",
                 error: "${themeColors.error || initialColor.error}",
                 hint: "${themeColors.hint || initialColor.hint}",
               }
