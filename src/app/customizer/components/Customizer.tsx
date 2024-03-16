@@ -88,7 +88,7 @@ export default function Customizer() {
       <div className="flex customizerWidget ">
         <>
           <input type="checkbox" id="drawer-toggle" className="relative sr-only peer" checked={showDrawer} />
-          <label onClick={() => setShowDrawer(!showDrawer)} className="absolute cursor-pointer hover:brightness-75 top-20 z-50 left-0 inline-block p-2 transition-all duration-500 bg-indigo-500 rounded-lg peer-checked:rotate-180 peer-checked:left-72">
+          <label onClick={() => setShowDrawer(!showDrawer)} className="absolute cursor-pointer hover:brightness-75 top-20 z-50 left-0 inline-block p-2 transition-all duration-500 bg-blue-500 hover:bg-blue-700 rounded-lg peer-checked:rotate-180 peer-checked:left-72">
             
 
               <ChevronRightIcon className="inline-block h-8 w-8 text-white font-bold" aria-hidden="true" />
