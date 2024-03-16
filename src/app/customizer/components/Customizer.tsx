@@ -17,9 +17,11 @@ export type ColorType = {
   primary: string;
   secondary: string;
   interactive: string;
+  onInteractive: string;
   container: string;
   module: string;
   accent: string;
+  onAccent: string;
   outline: string;
   dialog: string;
   error: string;
@@ -30,9 +32,11 @@ const initialColor: ColorType = {
   primary: "#ffffff",
   secondary: "#99a1bd",
   interactive: "#40444f",
+  onInteractive: "#ffffff",
   container: "#0e111b",
   module: "#131a2a",
   accent: "#4b83fb",
+  onAccent: "#ffffff",
   outline: "#565a69",
   dialog: "#ffffff",
   error: "#fd4040",
@@ -43,9 +47,11 @@ const defaultColor: ColorType = {
   primary: "",
   secondary: "",
   interactive: "",
+  onInteractive: "",
   container: "",
   module: "",
   accent: "",
+  onAccent: "#ffffff",
   outline: "",
   dialog: "",
   error: "",
@@ -65,6 +71,10 @@ export default function Customizer() {
     if (re.test(newColor)) {
       setThemeColors(prev => ({ ...prev, [type]: newColor }));
     }
+  }
+
+  const resetVariable = () => {
+    setThemeColors(defaultColor);
   }
 
   // ...
@@ -293,6 +303,13 @@ export default function Customizer() {
 
                 <div className=" ml-8 mr-8 mb-4">
                   <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
+                    Interactive Text color
+                  </label>
+                  <PopoverPicker color={themeColors.onInteractive || initialColor.onInteractive} onChange={(newColor) => handleColorChange(newColor, "onInteractive")} />
+                </div>
+
+                <div className=" ml-8 mr-8 mb-4">
+                  <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
                     Container color
                   </label>
                   <PopoverPicker color={themeColors.container || initialColor.container} onChange={(newColor) => handleColorChange(newColor, "container")} />
@@ -310,6 +327,13 @@ export default function Customizer() {
                     Accent color
                   </label>
                   <PopoverPicker color={themeColors.accent || initialColor.accent} onChange={(newColor) => handleColorChange(newColor, "accent")} />
+                </div>
+
+                <div className=" ml-8 mr-8 mb-4">
+                  <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
+                    Accent Text color
+                  </label>
+                  <PopoverPicker color={themeColors.onAccent || initialColor.onAccent} onChange={(newColor) => handleColorChange(newColor, "onAccent")} />
                 </div>
 
                 <div className=" ml-8 mr-8 mb-4">
@@ -341,6 +365,13 @@ export default function Customizer() {
                   </label>
                   <PopoverPicker color={themeColors.hint || initialColor.hint} onChange={(newColor) => handleColorChange(newColor, "hint")} />
                 </div>
+
+                <div className=" ml-8 mr-8 mb-4 mt-2 text-center">
+
+                <button onClick={() => resetVariable()} className=" btn btn-outline-primary  font-bold py-2 px-4 rounded"> Reset to default</button>
+
+              
+               </div>
 
               </div>
             </div>
@@ -414,9 +445,11 @@ export default function Customizer() {
             primary: string;
             secondary: string;
             interactive: string;
+            onInteractive: string;
             container: string;
             module: string;
             accent: string;
+            onAccent: onAccent;
             outline: string;
             dialog: string;
             error: string;
@@ -450,9 +483,11 @@ export default function Customizer() {
                 primary: "${themeColors.primary || initialColor.primary}" ,
                 secondary: "${themeColors.secondary || initialColor.secondary}",
                 interactive: "${themeColors.interactive || initialColor.interactive}",
+                onInteractive: "${themeColors.onInteractive || initialColor.onInteractive}",
                 container:  "${themeColors.container || initialColor.container}",
                 module: "${themeColors.module || initialColor.module}",
                 accent: "${themeColors.accent || initialColor.accent}",
+                onAccent: "${themeColors.onAccent || initialColor.onAccent}",
                 outline: "${themeColors.outline || initialColor.outline}",
                 dialog: "${themeColors.dialog || initialColor.dialog}",
                 error: "${themeColors.error || initialColor.error}",
