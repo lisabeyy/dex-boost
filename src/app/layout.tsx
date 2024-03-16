@@ -47,20 +47,18 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href={`https://fonts.googleapis.com/css2?family=${pf}${
-            sf ? "&family=" + sf : ""
-          }&display=swap`}
+          href={`https://fonts.googleapis.com/css2?family=${pf}${sf ? "&family=" + sf : ""
+            }&display=swap`}
           rel="stylesheet"
         />
       </head>
 
       <body suppressHydrationWarning={true}>
         <TwSizeIndicator />
-        
+
         <Providers>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          {children}
+         
         </Providers>
       </body>
     </html>

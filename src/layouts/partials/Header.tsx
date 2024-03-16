@@ -25,7 +25,7 @@ export interface INavigationLink {
 const Header = () => {
   // distructuring the main menu from menu object
   const { main }: { main: INavigationLink[] } = menu;
-  const { navigation_button, settings } = config;
+  const { customizer_button, settings } = config;
   // get current path
   const pathname = usePathname();
 
@@ -126,13 +126,13 @@ const Header = () => {
               )}
             </React.Fragment>
           ))}
-          {navigation_button.enable && (
+          {customizer_button.enable && (
             <li className="mt-4 inline-block lg:hidden">
               <Link
                 className="btn btn-outline-primary btn-sm"
-                href={navigation_button.link}
+                href={customizer_button.link}
               >
-                {navigation_button.label}
+                {customizer_button.label}
               </Link>
             </li>
           )}
@@ -149,12 +149,12 @@ const Header = () => {
           )}
          
           <ThemeSwitcher className="mr-5" />
-          {navigation_button.enable && (
+          {customizer_button.enable && (
             <Link
-              className="btn btn-outline-primary btn-sm hidden lg:inline-block"
-              href={navigation_button.link}
+              className="customizer btn btn-outline-primary btn-sm hidden lg:inline-block"
+              href={customizer_button.link}
             >
-              {navigation_button.label}
+              {customizer_button.label}
             </Link>
           )}
         </div>

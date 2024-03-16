@@ -2,6 +2,8 @@ import ImageFallback from "@/helpers/ImageFallback";
 import MDXContent from "@/helpers/MDXContent";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
+import Footer from "@/partials/Footer";
+import Header from "@/partials/Header";
 import SeoMeta from "@/partials/SeoMeta";
 import { RegularPage } from "@/types";
 
@@ -12,37 +14,44 @@ const About = () => {
 
   return (
     <>
-      <SeoMeta
-        title={title}
-        meta_title={meta_title}
-        description={description}
-        image={image}
-      />
-      <section className="section-sm">
-        <div className="container">
-          <div className="row justify-center">
-            <div className="text-center md:col-10 lg:col-7">
-              {image && (
-                <ImageFallback
-                  className="mx-auto mb-6 rounded-lg"
-                  src={image}
-                  width={200}
-                  height={200}
-                  alt={title}
+
+      <Header />
+      <main>
+        <SeoMeta
+          title={title}
+          meta_title={meta_title}
+          description={description}
+          image={image}
+        />
+        <section className="section-sm">
+          <div className="container">
+            <div className="row justify-center">
+              <div className="text-center md:col-10 lg:col-7">
+                {image && (
+                  <ImageFallback
+                    className="mx-auto mb-6 rounded-lg"
+                    src={image}
+                    width={200}
+                    height={200}
+                    alt={title}
+                  />
+                )}
+                <h2
+                  dangerouslySetInnerHTML={markdownify(title)}
+                  className="h3 mb-6"
                 />
-              )}
-              <h2
-                dangerouslySetInnerHTML={markdownify(title)}
-                className="h3 mb-6"
-              />
-              <div className="content">
-                <MDXContent content={content} />
+                <div className="content">
+                  <MDXContent content={content} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
+      <Footer />
     </>
+
+
   );
 };
 
