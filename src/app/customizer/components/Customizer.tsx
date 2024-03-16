@@ -2,7 +2,7 @@
 import SwapCard from "./swap-card";
 import { Fragment, useCallback, useRef, useState } from 'react'
 import { Dialog, Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { CheckIcon, ChevronUpDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import PopoverPicker from "./PopoverPicker";
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Header from "@/partials/Header";
@@ -65,7 +65,8 @@ export default function Customizer() {
   const [selectedConnectionUI, setSelectedConnectionUi] = useState(true)
   const [selectedBrandingOption, setSelectedBrandingOption] = useState(true)
   const [themeColors, setThemeColors] = useState<ColorType>(defaultColor);
-  const [openCode, setOpenCode] = useState(false)
+  const [openCode, setOpenCode] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(true);
   const handleColorChange = (newColor: string, type: keyof ColorType) => {
     const re = /[0-9A-Fa-f]{6}/g;
     if (re.test(newColor)) {
@@ -86,10 +87,11 @@ export default function Customizer() {
 
       <div className="flex customizerWidget ">
         <>
-          <input type="checkbox" id="drawer-toggle" className="relative sr-only peer" checked />
-          <label className="absolute top-0 z-40 left-0 inline-block p-4 transition-all duration-500 bg-indigo-500 rounded-lg peer-checked:rotate-180 peer-checked:left-64">
-            <div className="w-2 h-1 mb-3 -rotate-45 bg-white rounded-lg"></div>
-            <div className="w-2 h-1 rotate-45 bg-white rounded-lg"></div>
+          <input type="checkbox" id="drawer-toggle" className="relative sr-only peer" checked={showDrawer} />
+          <label onClick={() => setShowDrawer(!showDrawer)} className="absolute cursor-pointer hover:brightness-75 top-20 z-50 left-0 inline-block p-2 transition-all duration-500 bg-indigo-500 rounded-lg peer-checked:rotate-180 peer-checked:left-72">
+            
+
+              <ChevronRightIcon className="inline-block h-8 w-8 text-white font-bold" aria-hidden="true" />
 
           </label>
           <div className="fixed sm:max-md:w-full top-0 left-0 z-40 w-80 h-full transition-all duration-500 transform -translate-x-full overflow-y-scroll bg-theme-light  dark:bg-darkmode-theme-light shadow-lg peer-checked:translate-x-0">
@@ -368,10 +370,10 @@ export default function Customizer() {
 
                 <div className=" ml-8 mr-8 mb-4 mt-2 text-center">
 
-                <button onClick={() => resetVariable()} className=" btn btn-outline-primary  font-bold py-2 px-4 rounded"> Reset to default</button>
+                  <button onClick={() => resetVariable()} className=" btn btn-outline-primary  font-bold py-2 px-4 rounded"> Reset to default</button>
 
-              
-               </div>
+
+                </div>
 
               </div>
             </div>
@@ -387,7 +389,7 @@ export default function Customizer() {
           <div className="w-full md:max-lg:w-[130%] mt-24 flex  justify-center items-center">
             <SwapCard
               hideConnectionUI={selectedConnectionUI}
-              disableBranding={selectedBrandingOption} 
+              disableBranding={selectedBrandingOption}
               theme={selectedTheme}
               colors={themeColors}
             />
@@ -398,47 +400,47 @@ export default function Customizer() {
 
           <button onClick={() => setOpenCode(true)} className="fixed bottom-20 right-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> &lt; &gt; View Embed Code</button>
 
-        
+
         </main>
       </div>
 
 
       <Transition.Root show={openCode} as={Fragment}>
-            <Dialog as="div" className="relative z-50" onClose={setOpenCode}>
+        <Dialog as="div" className="relative z-50" onClose={setOpenCode}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 max-h-full  w-screen overflow-y-auto">
+            <div className="flex items-end justify-center p-4 text-center h-full sm:items-center sm:p-0">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
                 leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-              </Transition.Child>
 
-              <div className="fixed inset-0 z-10 max-h-full  w-screen overflow-y-auto">
-                <div className="flex items-end justify-center p-4 text-center h-full sm:items-center sm:p-0">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  >
+                <Dialog.Panel className="relative h-[80%] transform overflow-y-scroll rounded-lg  bg-theme-light  dark:bg-darkmode-theme-light px-4 pb-4 pt-5 text-left shadow-xl transition-all ">
+                  <div>
 
-                    <Dialog.Panel className="relative h-[80%] transform overflow-y-scroll rounded-lg  bg-theme-light  dark:bg-darkmode-theme-light px-4 pb-4 pt-5 text-left shadow-xl transition-all ">
-                      <div>
-                      
-                          <Dialog.Title as="h3" className="text-center font-semibold leading-6 mb-2 text-gray-900">
-                            Uniswap Widget code for ReactJS
-                          </Dialog.Title>
-                          <div className="mt-2">
+                    <Dialog.Title as="h3" className="text-center font-semibold leading-6 mb-2 text-gray-900">
+                      Uniswap Widget code for ReactJS
+                    </Dialog.Title>
+                    <div className="mt-2">
 
-                            <CopyBlock
-                              text={`
+                      <CopyBlock
+                        text={`
           import { SwapWidget,  darkTheme, lightTheme } from "@uniswap/widgets"
           
           type ThemeColors = {
@@ -504,33 +506,33 @@ export default function Customizer() {
           }
           
           `}
-                              codeBlock
-                              customStyle={{
-                                overflow: 'scroll',
-                              }}
-                              language="js"
-                              theme={dracula}
-                              showLineNumbers={false}
-                            />
+                        codeBlock
+                        customStyle={{
+                          overflow: 'scroll',
+                        }}
+                        language="js"
+                        theme={dracula}
+                        showLineNumbers={false}
+                      />
 
 
-                          </div>
-                        </div>
-                      <div className="mt-5 sm:mt-6">
-                        <button
-                          type="button"
-                          className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                          onClick={() => setOpenCode(false)}
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </Dialog.Panel>
-                  </Transition.Child>
-                </div>
-              </div>
-            </Dialog>
-          </Transition.Root>
+                    </div>
+                  </div>
+                  <div className="mt-5 sm:mt-6">
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      onClick={() => setOpenCode(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
 
 
     </>
