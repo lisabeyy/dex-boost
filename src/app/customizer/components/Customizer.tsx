@@ -382,7 +382,7 @@ export default function Customizer() {
 
 
 
-        <main className="w-full h-screen ">
+        <main className="w-full h-screen text-center">
           <div className="w-full">
             <Header />
           </div>
@@ -398,7 +398,7 @@ export default function Customizer() {
 
           </div>
 
-          <button onClick={() => setOpenCode(true)} className="fixed bottom-20 right-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> &lt; &gt; View Embed Code</button>
+          <button onClick={() => setOpenCode(true)} className="mt-32 btn btn-primary  py-2 px-4 "> &lt;&gt; View Embed Code</button>
 
 
         </main>
@@ -434,7 +434,7 @@ export default function Customizer() {
                 <Dialog.Panel className="relative h-[80%] transform overflow-y-scroll rounded-lg  bg-theme-light  dark:bg-darkmode-theme-light px-4 pb-4 pt-5 text-left shadow-xl transition-all ">
                   <div>
 
-                    <Dialog.Title as="h3" className="text-center font-semibold leading-6 mb-2 text-gray-900">
+                    <Dialog.Title as="h3" className="text-center font-semibold leading-6 mb-8 text-gray-900">
                       Uniswap Widget code for ReactJS
                     </Dialog.Title>
                     <div className="mt-2">
