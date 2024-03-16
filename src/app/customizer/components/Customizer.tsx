@@ -82,8 +82,9 @@ export default function Customizer() {
             <div className="w-2 h-1 rotate-45 bg-white rounded-lg"></div>
 
           </label>
-          <div className="fixed top-0 left-0 z-40 w-80 h-full transition-all duration-500 transform -translate-x-full overflow-y-scroll bg-theme-light  dark:bg-darkmode-theme-light shadow-lg peer-checked:translate-x-0">
-            <div className="px-6 py-4">
+          <div className="fixed sm:max-md:w-full top-0 left-0 z-40 w-80 h-full transition-all duration-500 transform -translate-x-full overflow-y-scroll bg-theme-light  dark:bg-darkmode-theme-light shadow-lg peer-checked:translate-x-0">
+            <p className="w-full hidden sm:max-md:inline-block text-center mt-8 ">Sorry you can&apos;t use this on small screen :(</p>
+            <div className="px-6 py-4 sm:max-md:hidden">
               <h4 className="text-center my-6">Uniswap Widget </h4>
 
               <div className="h-[80%] justify-center items-center overflow-y-scroll ">
@@ -352,7 +353,7 @@ export default function Customizer() {
           <div className="w-full">
             <Header />
           </div>
-          <div className="w-full mt-24 flex  justify-center items-center">
+          <div className="w-full md:max-lg:w-[130%] mt-24 flex  justify-center items-center">
             <SwapCard
               hideConnectionUI={selectedConnectionUI}
               disableBranding={selectedBrandingOption} 
