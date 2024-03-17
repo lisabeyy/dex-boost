@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Uniswap Boost",
-    "base_url": "https://uniswap-boost.vercel.app",
+    "title": "Dex Boost",
+    "base_url": "https://dex-boost.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -9,7 +9,7 @@
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "200",
     "logo_height": "30",
-    "logo_text": "Uniswap Boost"
+    "logo_text": "Dex Boost"
   },
 
   "settings": {
