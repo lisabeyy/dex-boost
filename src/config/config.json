@@ -1,15 +1,15 @@
 {
   "site": {
-    "title": "ShinyDex",
-    "base_url": "https://shinydex.vercel.app",
+    "title": "shinydapp",
+    "base_url": "https://shinydapp.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/shinydex.png",
+    "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "200",
-    "logo_height": "44",
-    "logo_text": "ShinyDex"
+    "logo_height": "40",
+    "logo_text": "shinydapp"
   },
 
   "settings": {

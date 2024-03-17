@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "Ready to build your next project with ShinyDex?"
+title: "Ready to build your next project with ShinyDapp?"
 image: "/images/call-to-action.png"
 description: "Build lightning-fast Uniswap integration with ease and flexibility."
 button:
