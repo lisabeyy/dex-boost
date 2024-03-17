@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "The Ultimate Starter For Your Uniswap Integration"
-  content: "Dex Boost helps you save type integrating Uniswap SDK and using its widget."
+  content: "ShinyDex helps you save type integrating Uniswap SDK and using its widget."
   image: "/images/banner.png"
   button:
     enable: true
@@ -11,9 +11,9 @@ banner:
 
 # Features
 features:
-  - title: "What's Included in Dex Boost"
+  - title: "What's Included in ShinyDex"
     image: "/images/service-1.png"
-    content: "Dex Boost providesa comprehensive starter code that includes everything you need to get started with your Uniswap SDK Integration Project. What's Included in Dex Boost"
+    content: "ShinyDex providesa comprehensive starter code that includes everything you need to get started with your Uniswap SDK Integration Project. What's Included in ShinyDex"
     bulletpoints:
       - "Swap Template with smart routing"
       - "Uniswap Widget customizer"

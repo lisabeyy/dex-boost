@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "Ready to build your next project with Dex Boost?"
+title: "Ready to build your next project with ShinyDex?"
 image: "/images/call-to-action.png"
 description: "Build lightning-fast Uniswap integration with ease and flexibility."
 button:
