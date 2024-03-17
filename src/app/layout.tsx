@@ -28,7 +28,7 @@ export default function RootLayout({
         {/* favicon */}
         <link rel="shortcut icon" href={config.site.favicon} />
         {/* theme meta */}
-        <meta name="theme-name" content="uniswap-boost" />
+        <meta name="theme-name" content="dex-boost" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="theme-color"
