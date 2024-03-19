@@ -2,7 +2,7 @@ import config from "@/config/config.json";
 import theme from "@/config/theme.json";
 import TwSizeIndicator from "@/helpers/TwSizeIndicator";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import { GoogleTagManager } from '@next/third-parties/google'
 import Providers from "@/partials/Providers";
 import { Analytics } from "@vercel/analytics/react"
 import "@/styles/main.scss";
@@ -61,6 +61,7 @@ export default function RootLayout({
           {children}
          
         </Providers>
+        <GoogleTagManager gtmId="G-L66V4F2BVL" />
         <Analytics />
         <SpeedInsights />
       </body>
