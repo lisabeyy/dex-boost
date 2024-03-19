@@ -64,19 +64,19 @@ export default async function PoolsList() {
       createdAt: new Date(pool.createdAtTimestamp * 1000).toLocaleString()
     };
   });
-  
+
 
   return (
 
     <>
       <h3 className='mb-4'>Pools List</h3>
-
-    {data && data.length > 0 && 
+      <p className='mb-4'>Displaying latest Uniswap v3 pools with a volume superior to two million USD</p>
+      {data && data.length > 0 &&
         <>
-        <DataTable data={data}  />
-        
+          <DataTable />
+
         </>
-    }
+      }
     </>
 
 

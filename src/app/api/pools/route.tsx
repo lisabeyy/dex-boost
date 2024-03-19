@@ -1,5 +1,80 @@
-function requestHandler(_request: Request): Response {
-  return Response.json({ message: "Hello from Next.js!" });
+import { NextResponse } from 'next/server'
+import gql from 'graphql-tag'
+import { execute } from '../../../../.graphclient'
+import { formatNumber } from '@/lib/utils/numbers'
+
+
+type Pool = {
+  id: string,
+  symbol: string,
+  pair: string,
+  feeTier: string,
+  liquidity: number,
+  txCount: number,
+  volumeUSD: number,
+  createdAt: string,
 }
 
-export { requestHandler as GET }
+
+export async function GET(request: Request) {
+
+
+  const poolsV3 = gql`
+    query pools {
+      pools(first: 100, orderBy: createdAtTimestamp , orderDirection: desc, where: { volumeUSD_gt: 1999999  }) {
+        id
+        createdAtTimestamp
+        feeTier
+        sqrtPrice
+        totalValueLockedUSD
+        token0 {
+          symbol
+          name
+          totalSupply
+          totalValueLockedUSD
+        }
+        token1 {
+          symbol
+          name
+          totalSupply
+          totalValueLockedUSD
+        }
+        txCount
+        volumeUSD
+      }
+    }
+  `
+
+  let data: Pool[] = [];
+
+
+  try {
+   const result = await execute(poolsV3, {});
+      data = result?.data?.pools.map((pool: any) => {
+        return {
+          id: pool.id,
+          link: "https://etherscan.io/address/" + pool.id,
+          symbol: pool.token0.symbol + '/' + pool.token1.symbol,
+          pair: pool.token0.name + '/' + pool.token1.name,
+          feeTier: pool.feeTier / 10000 + '%',
+          totalValueLockedUSD: pool.totalValueLockedUSD,
+          txCount: pool.txCount,
+          volumeUSD: pool.volumeUSD,
+          createdAt: pool.createdAtTimestamp
+        };
+      });
+  
+  
+      return new NextResponse(JSON.stringify(data), {
+        status: 200
+      })
+
+  } catch (error) {
+    return new NextResponse(JSON.stringify({error: error}), {
+      status: 500
+    })
+  }
+
+}
+
+
