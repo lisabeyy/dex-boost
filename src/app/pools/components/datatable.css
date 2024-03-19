@@ -1,0 +1,4 @@
+input, input:hover, input:focus, [type='text']:focus, select:focus {
+  border: 0px;
+  box-shadow: none;
+}
