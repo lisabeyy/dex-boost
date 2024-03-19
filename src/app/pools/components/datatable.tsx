@@ -110,10 +110,10 @@ export default function DataTable() {
   return (
 
     <>
-      <div className="flex justify-between gap-3 items-end">
+      <div className="flex  gap-3 items-end">
         <Input
           isClearable
-          className="w-full sm:max-w-[44%] border-none"
+          className="w-full sm:max-w-[22%] border-none"
           placeholder="Search by name..."
           startContent={<MagnifyingGlassIcon className="w-4 h-4" />}
           value={filterValue}
