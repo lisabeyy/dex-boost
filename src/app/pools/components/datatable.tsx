@@ -14,9 +14,7 @@ import "./datatable.css";
 
 
 const networkOptions = [
-  {name: "Ethereum", uid: "ethereum"},
-  {name: "Polygon", uid: "polygon"},
-  {name: "Arbitrum", uid: "arbitrum"},
+  {name: "Ethereum", uid: "ethereum"}
 ];
 
 
@@ -124,7 +122,7 @@ export default function DataTable() {
           <Dropdown>
             <DropdownTrigger className="hidden sm:flex">
               <Button endContent={<ChevronDownIcon className="w-4 h-4" />} variant="flat">
-                Networks
+                Network
               </Button>
             </DropdownTrigger>
             <DropdownMenu
