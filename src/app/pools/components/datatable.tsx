@@ -5,6 +5,7 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  Link,
 } from "@nextui-org/react";
 import { useAsyncList } from "@react-stately/data";
 import { formatNumber } from '@/lib/utils/numbers'
@@ -14,7 +15,7 @@ import "./datatable.css";
 
 
 const networkOptions = [
-  {name: "Ethereum", uid: "ethereum"}
+  { name: "Ethereum", uid: "ethereum" }
 ];
 
 
@@ -138,7 +139,7 @@ export default function DataTable() {
               ))}
             </DropdownMenu>
           </Dropdown>
-     
+
         </div>
       </div>
       <div className="flex justify-between items-center ">
@@ -195,16 +196,16 @@ export default function DataTable() {
               {(columnKey: any) => {
                 switch (columnKey) {
                   case 'symbol':
-                    return <TableCell><a href={item.link} target="_blank">{getKeyValue(item, columnKey)}</a></TableCell>;
+                    return <TableCell>< Link className="text-[#5451F3] text-medium" href={item.link} target="_blank">{getKeyValue(item, columnKey)}</Link></TableCell>;
                   case 'feeTier':
                     // Add your custom rendering for feeTier here
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
                   case 'totalValueLockedUSD':
                     // Add your custom rendering for totalValueLockedUSD here
-                    return <TableCell>{formatNumber(parseFloat(getKeyValue(item, columnKey)))}</TableCell>;
+                    return <TableCell >{formatNumber(parseFloat(getKeyValue(item, columnKey)))}</TableCell>;
                   case 'volumeUSD':
                     // Add your custom rendering for volumeUSD here
-                    return <TableCell>{formatNumber(getKeyValue(item, columnKey))}</TableCell>;
+                    return <TableCell >{formatNumber(getKeyValue(item, columnKey))}</TableCell>;
                   case 'txCount':
                     // Add your custom rendering for txCount here
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;

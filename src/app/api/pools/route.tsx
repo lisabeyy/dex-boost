@@ -18,10 +18,12 @@ type Pool = {
 
 export async function GET(request: Request) {
 
-
+  const date = new Date();
+  date.setMonth(date.getMonth() - 3);
+  const timestamp = date.getTime();
   const poolsV3 = gql`
     query pools {
-      pools(first: 5000, orderBy: createdAtTimestamp , orderDirection: desc, where: { volumeUSD_gt: 1999999  }) {
+        pools(first: 500, orderBy: createdAtTimestamp , orderDirection: desc, where: { and :[{ volumeUSD_gt: 1999999 } , { totalValueLockedUSD_gt: 100000 }, {createdAtTimestamp_lte: ${timestamp}}] } ) {
         id
         createdAtTimestamp
         feeTier
@@ -53,7 +55,7 @@ export async function GET(request: Request) {
       data = result?.data?.pools.map((pool: any) => {
         return {
           id: pool.id,
-          link: "https://etherscan.io/address/" + pool.id,
+          link: "https://info.uniswap.org/#/pools/" + pool.id,
           symbol: pool.token0.symbol + '/' + pool.token1.symbol,
           pair: pool.token0.name + '/' + pool.token1.name,
           feeTier: pool.feeTier / 10000 + '%',

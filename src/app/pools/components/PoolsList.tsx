@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server'
 import gql from 'graphql-tag'
 import { execute } from '../../../../.graphclient'
-import { ChevronUpIcon } from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import DataTable from "./datatable";
 import { formatNumber } from '@/lib/utils/numbers';
 
@@ -55,7 +55,7 @@ export default async function PoolsList() {
     return {
       id: pool.id,
       link: "https://etherscan.io/address/" + pool.id,
-      symbol: pool.token0.symbol + '/' + pool.token1.symbol,
+      symbol: pool.token0.symbol + ' / ' + pool.token1.symbol,
       pair: pool.token0.name + '/' + pool.token1.name,
       feeTier: pool.feeTier / 10000 + '%',
       totalValueLockedUSD: formatNumber(parseFloat(pool.totalValueLockedUSD)),
@@ -70,7 +70,10 @@ export default async function PoolsList() {
 
     <>
       <h3 className='mb-4'>Pools List</h3>
-      <p className='mb-4'>Displaying latest Uniswap v3 pools with a volume superior to two million USD</p>
+      <p className='px-8 mb-2 text-large'>What you see here are the pools created in the last 3 months on Uniswap v3 with a volume superior to 2 million USD and a TVL superior to 100k</p>
+      <p className='px-8 mb-4 text-large'>
+        Click on a pair to open the pool on Uniswap
+      </p>
       {data && data.length > 0 &&
         <>
           <DataTable />
