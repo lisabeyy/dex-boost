@@ -23,9 +23,9 @@ type Pool = {
 export default async function PoolsList() {
 
 
-  const myQuery = gql`
+  const poolsV3 = gql`
     query pools {
-      pools(first: 100, orderBy: createdAtTimestamp , orderDirection: desc) {
+      pools(first: 100, orderBy: createdAtTimestamp , orderDirection: desc, where: { volumeUSD_gt: 1999999  }) {
         id
         createdAtTimestamp
         feeTier
@@ -49,7 +49,7 @@ export default async function PoolsList() {
     }
   `
 
-  const result = await execute(myQuery, {})
+  const result = await execute(poolsV3, {})
   let data: Pool[] = [];
   data = result?.data?.pools.map((pool: any) => {
     return {

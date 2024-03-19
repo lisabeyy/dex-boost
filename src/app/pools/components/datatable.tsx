@@ -52,7 +52,7 @@ export default function DataTable(poolsData: any) {
           <TableRow key={item.id}>
             {(columnKey: any) => 
               columnKey === 'symbol' ? 
-              <TableCell><a href={item.link}>{getKeyValue(item, columnKey)}</a></TableCell> :
+              <TableCell><a href={item.link} target="_blank">{getKeyValue(item, columnKey)}</a></TableCell> :
               <TableCell>{getKeyValue(item, columnKey)}</TableCell>
             }
           </TableRow>
