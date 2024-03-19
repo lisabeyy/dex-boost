@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+## About
+
+Find out Useful tools to help you get started with Uniswap v3 
+Swap feature with a widget that you can customize and integrate in your dApp
+Pools with high rewards for liquidity providers
+
 ## Getting Started
 
 First, run the development server:
