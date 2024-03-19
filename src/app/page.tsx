@@ -7,6 +7,7 @@ import Header from "@/partials/Header";
 import SeoMeta from "@/partials/SeoMeta";
 import { Button, Feature } from "@/types";
 import Link from "next/link";
+import { title } from "process";
 import { FaCheck } from "react-icons/fa";
 
 const Home = () => {
@@ -24,7 +25,11 @@ const Home = () => {
   return (
     <>
       <Header />
-      <main>   <SeoMeta />
+      <main>   
+        <SeoMeta title="ShinydApp provides tools for Uniswap V3" 
+            meta_title="Pools with high reward customizer for Uniswap Widget "
+            description="Liquidity Providers opportunities on Uniswap v3 and Uniswap Widget customizer "
+      />
         <section className="section pt-14">
           <div className="container">
             <div className="row justify-center">
