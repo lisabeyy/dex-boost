@@ -21,20 +21,12 @@ const networkOptions = [
 
 export default function DataTable() {
   const [page, setPage] = React.useState(1);
+  const [itemsCount, setItemsCount] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [pages, setPages] = React.useState<number>(1);
   const [isLoading, setIsLoading] = React.useState(true);
   const [filterValue, setFilterValue] = React.useState("");
 
-
-
-  const start = (page - 1) * rowsPerPage;
-  const end = start + rowsPerPage;
-
-  const onRowsPerPageChange = React.useCallback((e: any) => {
-    setRowsPerPage(Number(e.target.value));
-    setPage(1);
-  }, []);
 
   let list = useAsyncList({
     async load() {
@@ -42,7 +34,8 @@ export default function DataTable() {
       let json = await res.json();
       setIsLoading(false);
       setPages(Math.ceil(json.length / rowsPerPage));
-
+      setItemsCount(json.length);
+      console.log('json length', json.length);
       return {
         items: json
       };
@@ -67,6 +60,24 @@ export default function DataTable() {
     },
   });
 
+
+  const start = (page - 1) * rowsPerPage;
+  const end = start + rowsPerPage;
+  
+  const onRowsPerPageChange = React.useCallback((e: any) => {
+    setRowsPerPage(Number(e.target.value));
+    console.log('les page',itemsCount);
+    setPages(Math.ceil(itemsCount/ Number(e.target.value)));
+    setPage(1);
+  }, [itemsCount]);
+
+
+  const items = React.useMemo(() => {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    return list.items.slice(start, end);
+  }, [page, rowsPerPage, list.items]);
+
   const onSearchChange = React.useCallback((value: any) => {
     if (value) {
       setFilterValue(value);
@@ -83,11 +94,6 @@ export default function DataTable() {
 
 
 
-  const items = React.useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    return list.items.slice(start, end);
-  }, [page, rowsPerPage, list.items]);
 
   const hasSearchFilter = Boolean(filterValue);
 
@@ -153,8 +159,8 @@ export default function DataTable() {
             <option value="5">5</option>
             <option value="10" selected>10</option>
             <option value="15">15</option>
-            <option value="5">50</option>
-            <option value="5">100</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
           </select>
         </label>
       </div>
@@ -183,8 +189,8 @@ export default function DataTable() {
           <TableColumn key="symbol" allowsSorting>Pool Name</TableColumn>
           <TableColumn key="feeTier" >Fee Tier</TableColumn>
           <TableColumn key="totalValueLockedUSD" allowsSorting>Total Value Locked</TableColumn>
-          <TableColumn key="volumeUSD" allowsSorting>Volume USD</TableColumn>
-          <TableColumn key="txCount" allowsSorting>Trx Count</TableColumn>
+          <TableColumn key="volumeUSD" allowsSorting>Volume 24H</TableColumn>
+          <TableColumn key="txCount" allowsSorting>Tx Count 24H</TableColumn>
           <TableColumn key="createdAt" allowsSorting>Creation Date</TableColumn>
         </TableHeader>
 
