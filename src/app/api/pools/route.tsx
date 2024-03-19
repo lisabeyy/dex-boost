@@ -19,11 +19,11 @@ type Pool = {
 export async function GET(request: Request) {
 
   const date = new Date();
-  date.setMonth(date.getMonth() - 3);
-  const timestamp = date.getTime();
+  date.setMonth(date.getMonth() - 6);
+  const timestamp = Math.floor(date.getTime() / 1000);
   const poolsV3 = gql`
     query pools {
-        pools(first: 500, orderBy: createdAtTimestamp , orderDirection: desc, where: { and :[{ volumeUSD_gt: 1999999 } , { totalValueLockedUSD_gt: 100000 }, { txCount_gte: 500 }, {createdAtTimestamp_lte: ${timestamp}}] } ) {
+        pools(first: 500, orderBy: createdAtTimestamp , orderDirection: desc, where: { and :[{ volumeUSD_gt: 1999999 } , { totalValueLockedUSD_gt: 100000 }, { txCount_gte: 500 }, {createdAtTimestamp_gte: ${timestamp}}] } ) {
         id
         createdAtTimestamp
         feeTier

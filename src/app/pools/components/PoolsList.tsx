@@ -70,7 +70,7 @@ export default async function PoolsList() {
 
     <>
       <h3 className='mb-4'>Pools List</h3>
-      <p className='px-8 mb-2 text-large'>What you see here are the pools created in the last 3 months on Uniswap v3 with a volume superior to 2 million USD, a TVL superior to 100k and a minimum of 500 transactions.</p>
+      <p className='px-8 mb-2 text-large'>What you see here are the pools created in the last 6 months on Uniswap v3 with a volume superior to 2 million USD, a TVL superior to 100k and a minimum of 500 transactions.</p>
       <p className='px-8 mb-4 text-large'>
         Click on a pair to open the pool on Uniswap
       </p>
