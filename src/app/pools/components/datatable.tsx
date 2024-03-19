@@ -196,7 +196,7 @@ export default function DataTable() {
               {(columnKey: any) => {
                 switch (columnKey) {
                   case 'symbol':
-                    return <TableCell>< Link className="text-[#5451F3] text-medium" href={item.link} target="_blank">{getKeyValue(item, columnKey)}</Link></TableCell>;
+                    return <TableCell>< Link className="text-inherit text-medium" href={item.link} target="_blank">{getKeyValue(item, columnKey)}</Link></TableCell>;
                   case 'feeTier':
                     // Add your custom rendering for feeTier here
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
