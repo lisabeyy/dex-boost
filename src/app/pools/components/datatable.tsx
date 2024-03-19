@@ -3,6 +3,7 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyV
 import {Pagination, Spinner,Input, Button,} from "@nextui-org/react";
 import {useAsyncList} from "@react-stately/data";
 import { formatNumber } from '@/lib/utils/numbers'
+import { Pool } from "./PoolsList";
 
 export default function DataTable() {
   const [page, setPage] = React.useState(1);
@@ -30,11 +31,12 @@ export default function DataTable() {
     async sort({items, sortDescriptor}) {
       return {
 
-        items: items.sort((a, b) => {
-          console.log('items', items);
-          let first = a[sortDescriptor.column];
-          let second = b[sortDescriptor.column];
-          let cmp = (parseInt(first) || first) < (parseInt(second) || second) ? -1 : 1;
+        items: items.sort((a: any, b: any) => {
+          const column = sortDescriptor.column as string;
+            let first = a[column];
+            let second = b[column];
+            let cmp = (parseInt(first) || first) < (parseInt(second) || second) ? -1 : 1;
+        
 
           if (sortDescriptor.direction === "descending") {
             cmp *= -1;

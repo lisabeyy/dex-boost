@@ -8,7 +8,7 @@ import { formatNumber } from '@/lib/utils/numbers';
 
 
 
-type Pool = {
+export type Pool = {
   id: string,
   symbol: string,
   pair: string,
