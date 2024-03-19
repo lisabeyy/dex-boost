@@ -190,6 +190,7 @@ export default function DataTable() {
           <TableColumn key="feeTier" >Fee Tier</TableColumn>
           <TableColumn key="totalValueLockedUSD" allowsSorting>Total Value Locked</TableColumn>
           <TableColumn key="volumeUSD" allowsSorting>Volume 24H</TableColumn>
+          <TableColumn key="feeUSD" allowsSorting>Fees 24H</TableColumn>
           <TableColumn key="txCount" allowsSorting>Tx Count 24H</TableColumn>
           <TableColumn key="createdAt" allowsSorting>Creation Date</TableColumn>
         </TableHeader>
@@ -210,10 +211,13 @@ export default function DataTable() {
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
                   case 'totalValueLockedUSD':
                     // Add your custom rendering for totalValueLockedUSD here
-                    return <TableCell >{formatNumber(parseFloat(getKeyValue(item, columnKey)))}</TableCell>;
+                    return <TableCell >${formatNumber(parseFloat(getKeyValue(item, columnKey)))}</TableCell>;
                   case 'volumeUSD':
                     // Add your custom rendering for volumeUSD here
-                    return <TableCell >{formatNumber(getKeyValue(item, columnKey))}</TableCell>;
+                    return <TableCell >${formatNumber(getKeyValue(item, columnKey))}</TableCell>;
+                    case 'feeUSD':
+                      // Add your custom rendering for feeUSD here
+                      return <TableCell >${formatNumber(getKeyValue(item, columnKey))}</TableCell>;
                   case 'txCount':
                     // Add your custom rendering for txCount here
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;

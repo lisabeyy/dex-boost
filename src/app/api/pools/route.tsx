@@ -8,6 +8,7 @@ type Pool = {
   id: string,
   symbol: string,
   pair: string,
+  feeUSD: number,
   feeTier: string,
   liquidity: number,
   txCount: number,
@@ -25,6 +26,7 @@ export async function GET(request: Request) {
     query pools {
         pools(first: 500, orderBy: createdAtTimestamp , orderDirection: desc, where: { and :[{ volumeUSD_gt: 1999999 } , { totalValueLockedUSD_gt: 100000 }, { txCount_gte: 500 }, {createdAtTimestamp_gte: ${timestamp}}] } ) {
         id
+        feesUSD
         createdAtTimestamp
         feeTier
         sqrtPrice
@@ -57,6 +59,7 @@ export async function GET(request: Request) {
           id: pool.id,
           link: "https://info.uniswap.org/#/pools/" + pool.id,
           symbol: pool.token0.symbol + '/' + pool.token1.symbol,
+          feeUSD: pool.feesUSD,
           pair: pool.token0.name + '/' + pool.token1.name,
           feeTier: pool.feeTier / 10000 + '%',
           totalValueLockedUSD: pool.totalValueLockedUSD,
