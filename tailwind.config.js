@@ -23,11 +23,15 @@ if (theme.fonts.font_family.secondary) {
 }
 
 /** @type {import('tailwindcss').Config} */
+
+const {nextui} = require("@nextui-org/theme");
+
 module.exports = {
   content: [
     "./src/layouts/**/*.{js,ts,jsx,tsx}",
     "./src/content/**/*.{md,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
+    './node_modules/@nextui-org/theme/dist/components/table.js'
   ],
   safelist: [{ pattern: /^swiper-/ }],
   darkMode: "class",
@@ -98,5 +102,6 @@ module.exports = {
         5: "3rem",
       },
     }),
+    nextui()
   ],
 };
