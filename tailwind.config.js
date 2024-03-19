@@ -31,7 +31,7 @@ module.exports = {
     "./src/layouts/**/*.{js,ts,jsx,tsx}",
     "./src/content/**/*.{md,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
-    './node_modules/@nextui-org/theme/dist/components/table.js'
+    './node_modules/@nextui-org/theme/dist/components/(table|pagination).js'
   ],
   safelist: [{ pattern: /^swiper-/ }],
   darkMode: "class",
