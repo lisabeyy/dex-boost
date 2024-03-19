@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
   const poolsV3 = gql`
     query pools {
-      pools(first: 100, orderBy: createdAtTimestamp , orderDirection: desc, where: { volumeUSD_gt: 1999999  }) {
+      pools(first: 5000, orderBy: createdAtTimestamp , orderDirection: desc, where: { volumeUSD_gt: 1999999  }) {
         id
         createdAtTimestamp
         feeTier
