@@ -66,7 +66,6 @@ export default function DataTable() {
   
   const onRowsPerPageChange = React.useCallback((e: any) => {
     setRowsPerPage(Number(e.target.value));
-    console.log('les page',itemsCount);
     setPages(Math.ceil(itemsCount/ Number(e.target.value)));
     setPage(1);
   }, [itemsCount]);
@@ -136,6 +135,7 @@ export default function DataTable() {
               disallowEmptySelection
               aria-label="Network Selection"
               closeOnSelect={false}
+              selectedKeys={networkOptions[0].uid}
               selectionMode="multiple"
             >
               {networkOptions.map((status) => (
@@ -205,7 +205,7 @@ export default function DataTable() {
               {(columnKey: any) => {
                 switch (columnKey) {
                   case 'symbol':
-                    return <TableCell>< Link className="text-inherit text-medium" href={item.link} target="_blank">{getKeyValue(item, columnKey)}</Link></TableCell>;
+                    return <TableCell>< Link className="text-[#4542E0] text-medium" href={item.link} target="_blank">{getKeyValue(item, columnKey)}</Link></TableCell>;
                   case 'feeTier':
                     // Add your custom rendering for feeTier here
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
