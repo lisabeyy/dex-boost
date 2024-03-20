@@ -40,10 +40,6 @@ export type Scalars = {
   Int8: any;
 };
 
-export type Aggregation_interval =
-  | 'hour'
-  | 'day';
-
 export type BlockChangedFilter = {
   number_gte: Scalars['Int'];
 };
@@ -5310,8 +5306,6 @@ export type _Block_ = {
   number: Scalars['Int'];
   /** Integer representation of the timestamp stored in blocks for the chain */
   timestamp?: Maybe<Scalars['Int']>;
-  /** The hash of the parent block */
-  parentHash?: Maybe<Scalars['Bytes']>;
 };
 
 /** The type for the top-level _meta field */
@@ -5422,7 +5416,6 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  Aggregation_interval: Aggregation_interval;
   BigDecimal: ResolverTypeWrapper<Scalars['BigDecimal']>;
   BigInt: ResolverTypeWrapper<Scalars['BigInt']>;
   BlockChangedFilter: BlockChangedFilter;
@@ -6064,7 +6057,6 @@ export type _Block_Resolvers<ContextType = MeshContext, ParentType extends Resol
   hash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
   number?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   timestamp?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  parentHash?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -6158,7 +6150,7 @@ const uniswapv3Transforms = [];
 const additionalTypeDefs = [] as any[];
 const uniswapv3Handler = new GraphqlHandler({
               name: "uniswapv3",
-              config: {"endpoint":"https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3"},
+              config: {"endpoint":"https://gateway-arbitrum.network.thegraph.com/api/89ea9f08dd94397e6475a2a0771b3af9/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV"},
               baseDir,
               cache,
               pubsub,
