@@ -10,6 +10,7 @@ import { ColorType } from './Customizer';
 type Props = {
   theme?: string;
   colors?: ColorType;
+  borderRadius?: number;
   hideConnectionUI: boolean;
   disableBranding: boolean;
 };
@@ -30,7 +31,6 @@ export default function SwapCard(props: Props) {
       : lightTheme
     : lightTheme;
 
-    console.log('widgetTheme', widgetTheme);
     widgetTheme = {
       ...widgetTheme,
       primary: props?.colors?.primary ? props?.colors?.primary : widgetTheme.primary,
@@ -47,6 +47,7 @@ export default function SwapCard(props: Props) {
       success: props?.colors?.success ? props?.colors?.success : widgetTheme.success,
       error: props?.colors?.error ? props?.colors?.error : widgetTheme.error,
       hint: props?.colors?.hint ? props?.colors?.hint : widgetTheme.hint,
+      borderRadius: props?.borderRadius ? props?.borderRadius : 1,
     }
 
 

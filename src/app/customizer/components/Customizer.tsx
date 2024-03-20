@@ -4,6 +4,7 @@ import { Fragment, useCallback, useRef, useState } from 'react'
 import { Dialog, Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import PopoverPicker from "./PopoverPicker";
+import { Slider } from "@nextui-org/react";
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Header from "@/partials/Header";
 import './Customizer.css';
@@ -91,24 +92,26 @@ export default function Customizer() {
   const [selectedConnectionUI, setSelectedConnectionUi] = useState(true)
   const [selectedBrandingOption, setSelectedBrandingOption] = useState(true)
   const [themeColors, setThemeColors] = useState<ColorType>(defaultColor);
+  const [borderRadius, setBorderRadius] = useState<number>(1);
   const [openCode, setOpenCode] = useState(false);
   const [showDrawer, setShowDrawer] = useState(true);
-  const [initialColor, setInitialColor] = useState( theme == "dark" ? initialColorDark : initialColorLight);
+  const [initialColor, setInitialColor] = useState(theme == "dark" ? initialColorDark : initialColorLight);
 
   const handleColorChange = (newColor: string, type: keyof ColorType) => {
     const re = /[0-9A-Fa-f]{6}/g;
-    if (re.test(newColor)) {
+    if (re.test(newColor as string)) {
       setThemeColors(prev => ({ ...prev, [type]: newColor }));
     }
   }
 
   const handleThemeChange = (value: string) => {
-    setInitialColor( value == "Dark" ? initialColorDark : initialColorLight)
+    setInitialColor(value == "Dark" ? initialColorDark : initialColorLight)
     setSelectedTheme(value);
   }
 
   const resetVariable = () => {
     setThemeColors(defaultColor);
+    setBorderRadius(1);
   }
 
   // ...
@@ -118,21 +121,21 @@ export default function Customizer() {
 
       <div className="flex customizerWidget ">
         <>
-          <input type="checkbox" id="drawer-toggle" className="relative sr-only peer"  checked={showDrawer} />
+          <input type="checkbox" id="drawer-toggle" className="relative sr-only peer" checked={showDrawer} />
           <label onClick={() => setShowDrawer(!showDrawer)} className="absolute cursor-pointer hover:brightness-75 top-20 z-50 left-0 inline-block p-2 transition-all duration-500 bg-blue-500 hover:bg-blue-700 rounded-lg peer-checked:rotate-180 peer-checked:left-72">
-            
 
-              <ChevronRightIcon className="inline-block h-8 w-8 text-white font-bold" aria-hidden="true" />
+
+            <ChevronRightIcon className="inline-block h-8 w-8 text-white font-bold" aria-hidden="true" />
 
           </label>
           <div className="fixed sm:max-md:w-full top-0 left-0 z-40 w-80 h-full transition-all duration-500 transform -translate-x-full overflow-y-scroll bg-theme-light  dark:bg-darkmode-theme-light shadow-lg peer-checked:translate-x-0">
             <p className="w-full hidden sm:max-md:inline-block text-center mt-8 ">Sorry you can&apos;t use this on small screen :(</p>
             <div className="px-6 py-4 sm:max-md:hidden">
-              <h4 className="text-center my-6">Customize <br/> Uniswap Widget </h4>
+              <h4 className="text-center my-6">Customize <br /> Uniswap Widget </h4>
 
               <div className="h-[80%] justify-center items-center overflow-y-scroll ">
                 <div className=" ml-8 mr-8 mb-4  ">
-                  <Listbox value={selectedTheme} onChange={ (e) => handleThemeChange(e)}>
+                  <Listbox value={selectedTheme} onChange={(e) => handleThemeChange(e)}>
                     {({ open }) => (
                       <>
                         <Listbox.Label className="w-auto block text-sm font-medium leading-6 ">Theme</Listbox.Label>
@@ -414,6 +417,23 @@ export default function Customizer() {
                   <PopoverPicker color={themeColors.hint || initialColor.hint} onChange={(newColor) => handleColorChange(newColor, "hint")} />
                 </div>
 
+                <div className=" ml-8 mr-8 mb-4">
+                  <label className="block text-sm font-medium leading-6 text-primary dark:text-white">
+                    Border Radius
+                  </label>
+
+                  <Slider
+                    label=""
+                    step={0.01}
+                    maxValue={1}
+                    minValue={0}
+                    onChange={(val) => setBorderRadius(val as number)}
+                    defaultValue={borderRadius}
+                    className="max-w-md"
+                  />
+                </div>
+
+
                 <div className=" ml-8 mr-8 mb-4 mt-2 text-center">
 
                   <button onClick={() => resetVariable()} className=" btn btn-outline-primary  font-bold py-2 px-4 rounded"> Reset to default</button>
@@ -436,6 +456,7 @@ export default function Customizer() {
             <SwapCard
               hideConnectionUI={selectedConnectionUI}
               disableBranding={selectedBrandingOption}
+              borderRadius={borderRadius}
               theme={selectedTheme}
               colors={themeColors}
             />
@@ -487,9 +508,12 @@ export default function Customizer() {
 
                       <CopyBlock
                         text={`
+
+                        // We recommend using version "@uniswap/widgets@2.18.0" for the best experience
+                        // the latest versions will throw error on nextJS when trying to fetch a new trade
           import { SwapWidget,  darkTheme, lightTheme } from "@uniswap/widgets"
           
-          type ThemeColors = {
+          type ThemeConfig = {
             primary: string;
             secondary: string;
             active: string;
@@ -504,11 +528,12 @@ export default function Customizer() {
             dialog: string;
             error: string;
             hint: string;
+            borderRadius: number;
           };
 
           type Props = {
             theme?: string;
-            colors?: ThemeColors;
+            colors?: ThemeConfig;
             hideConnectionUI: boolean
           };
 
@@ -544,6 +569,7 @@ export default function Customizer() {
                 success: "${themeColors.success || initialColor.success}",
                 error: "${themeColors.error || initialColor.error}",
                 hint: "${themeColors.hint || initialColor.hint}",
+                borderRadius: "${borderRadius}",
               }
           
             const hideConnectionUI = ${selectedConnectionUI};
