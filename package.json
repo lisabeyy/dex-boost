@@ -12,7 +12,7 @@
     "postbuild": "next-sitemap",
     "lint": "next lint",
     "format": "prettier -w ./src",
-    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format",
+    "generate-json": "node scripts/jsonGenerator.js",
     "build-client": "graphclient build",
     "graphiql": "graphclient serve-dev"
   },
