@@ -57,7 +57,7 @@ export async function GET(request: Request) {
       data = result?.data?.pools.map((pool: any) => {
         return {
           id: pool.id,
-          link: "https://info.uniswap.org/#/pools/" + pool.id,
+          link: "https://www.geckoterminal.com/eth/pools/" + pool.id,
           symbol: pool.token0.symbol + '/' + pool.token1.symbol,
           feeUSD: pool.feesUSD,
           pair: pool.token0.name + '/' + pool.token1.name,
