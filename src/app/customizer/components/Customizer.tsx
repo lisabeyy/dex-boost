@@ -505,7 +505,7 @@ export default function Customizer() {
                       Uniswap Widget code for ReactJS / NextKS
                     </Dialog.Title>
                     <div className="mt-2">
-                            <h5 className="mb-2">Use this version of Uniswap Widget @uniswap/widgets@^2.59.0 </h5> 
+                            <h5 className="mb-2">Use this version of Uniswap Widget @uniswap/widgets@2.18.0 </h5> 
 
                             <h5 className="mb-4">Add this CSS fix in .css file</h5>
 
