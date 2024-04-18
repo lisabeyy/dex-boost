@@ -6,6 +6,13 @@ import './swap-card.css';
 import { useTheme } from 'next-themes';
 import { ColorType } from './Customizer';
 
+if (typeof window !== "undefined") {
+  // @ts-ignore
+    window.Browser = {
+      T: () => {
+      }
+    };
+  }
 
 type Props = {
   theme?: string;
@@ -47,7 +54,6 @@ export default function SwapCard(props: Props) {
       success: props?.colors?.success ? props?.colors?.success : widgetTheme.success,
       error: props?.colors?.error ? props?.colors?.error : widgetTheme.error,
       hint: props?.colors?.hint ? props?.colors?.hint : widgetTheme.hint,
-      borderRadius: props?.borderRadius ? props?.borderRadius : 1,
     }
 
 
@@ -56,7 +62,7 @@ export default function SwapCard(props: Props) {
 
 
   return (
-        <SwapWidget  disableBranding={props.disableBranding}  theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
+        <SwapWidget   theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
       
   );
 }

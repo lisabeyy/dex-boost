@@ -502,10 +502,18 @@ export default function Customizer() {
                   <div>
 
                     <Dialog.Title as="h3" className="text-center font-semibold leading-6 mb-8 text-gray-900">
-                      Uniswap Widget code for ReactJS
+                      Uniswap Widget code for ReactJS / NextKS
                     </Dialog.Title>
                     <div className="mt-2">
+                            <h5 className="mb-2">Use this version of Uniswap Widget @uniswap/widgets@^2.59.0 </h5> 
 
+                            <h5 className="mb-4">Add this CSS fix in .css file</h5>
+
+                      <CopyBlock   theme={dracula} showLineNumbers={false} language="css" text={`
+[class^="TokenOptions__OnHover"] {
+  display: none !important;
+}`}></CopyBlock>
+                      <h5 className="mt-4 mb-4">Code  to display widget component</h5>
                       <CopyBlock
                         text={`
 
@@ -513,6 +521,8 @@ export default function Customizer() {
                         // the latest versions will throw error on nextJS when trying to fetch a new trade
           import { SwapWidget,  darkTheme, lightTheme } from "@uniswap/widgets"
           
+  
+        
           type ThemeConfig = {
             primary: string;
             secondary: string;
