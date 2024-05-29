@@ -6,13 +6,7 @@ import './swap-card.css';
 import { useTheme } from 'next-themes';
 import { ColorType } from './Customizer';
 
-if (typeof window !== "undefined") {
-  // @ts-ignore
-    window.Browser = {
-      T: () => {
-      }
-    };
-  }
+
 
 type Props = {
   theme?: string;
@@ -22,11 +16,19 @@ type Props = {
   disableBranding: boolean;
 };
 
-
+const TOKEN_LIST = 'https://ipfs.io/ipns/tokens.uniswap.org'
 
 export default function SwapCard(props: Props) {
   let widgetTheme;
   const { theme } = useTheme();
+
+  if (typeof window !== "undefined") {
+    // @ts-ignore
+      window.Browser = {
+        T: () => {
+        }
+      };
+    }
   
   widgetTheme = props.theme
     ? props.theme === 'Dark'
@@ -62,7 +64,7 @@ export default function SwapCard(props: Props) {
 
 
   return (
-        <SwapWidget   theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
+        <SwapWidget tokenList={TOKEN_LIST}  theme={widgetTheme} hideConnectionUI={props.hideConnectionUI} />
       
   );
 }

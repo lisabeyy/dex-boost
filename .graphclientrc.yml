@@ -2,4 +2,4 @@ sources:
   - name: uniswapv3
     handler:
       graphql:
-        endpoint: https://gateway-arbitrum.network.thegraph.com/api/89ea9f08dd94397e6475a2a0771b3af9/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV
+        endpoint: https://gateway-arbitrum.network.thegraph.com/api/89ea9f08dd94397e6475a2a0771b3af9/subgraphs/id/AzEPX2S2JQNDr69gC27kbqdSNgEvzeL71SW8nr22koay

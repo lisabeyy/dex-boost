@@ -520,7 +520,7 @@ export default function Customizer() {
                         // We recommend using version "@uniswap/widgets@2.18.0" for the best experience
                         // the latest versions will throw error on nextJS when trying to fetch a new trade
           import { SwapWidget,  darkTheme, lightTheme } from "@uniswap/widgets"
-          
+          const TOKEN_LIST = 'https://ipfs.io/ipns/tokens.uniswap.org'
   
         
           type ThemeConfig = {
@@ -586,7 +586,7 @@ export default function Customizer() {
           
           
             return (
-                  <SwapWidget  disableBranding={${selectedBrandingOption}}  theme={widgetTheme} hideConnectionUI={${selectedConnectionUI}} />
+                  <SwapWidget   tokenList={TOKEN_LIST} disableBranding={${selectedBrandingOption}}  theme={widgetTheme} hideConnectionUI={${selectedConnectionUI}} />
                 
             );
           }
