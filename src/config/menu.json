@@ -3,6 +3,10 @@
     {
       "name": "Home",
       "url": "/"
+    }, 
+    {
+      "name": "Explore",
+      "url": "/pools"
     },
     {
       "name": "Blog",
