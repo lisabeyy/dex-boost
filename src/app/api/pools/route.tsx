@@ -19,6 +19,7 @@ type Pool = {
 
 export async function GET(request: Request) {
 
+  console.log('test');
   const date = new Date();
   date.setMonth(date.getMonth() - 6);
   const timestamp = Math.floor(date.getTime() / 1000);

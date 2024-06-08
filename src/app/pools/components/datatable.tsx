@@ -30,12 +30,11 @@ export default function DataTable() {
 
   let list = useAsyncList({
     async load() {
-      let res = await fetch('/api/pools', { next: { revalidate: 14400 } });
+      let res = await fetch('/api/pools', { next: { revalidate: 3600 } });
       let json = await res.json();
       setIsLoading(false);
       setPages(Math.ceil(json.length / rowsPerPage));
       setItemsCount(json.length);
-      console.log('json length', json.length);
       return {
         items: json
       };
