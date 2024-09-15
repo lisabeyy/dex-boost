@@ -13,6 +13,7 @@ import { Pool } from "./PoolsList";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import "./datatable.css";
 
+export const revalidate = 0;
 
 const networkOptions = [
   { name: "Ethereum", uid: "ethereum" }
@@ -62,10 +63,10 @@ export default function DataTable() {
 
   const start = (page - 1) * rowsPerPage;
   const end = start + rowsPerPage;
-  
+
   const onRowsPerPageChange = React.useCallback((e: any) => {
     setRowsPerPage(Number(e.target.value));
-    setPages(Math.ceil(itemsCount/ Number(e.target.value)));
+    setPages(Math.ceil(itemsCount / Number(e.target.value)));
     setPage(1);
   }, [itemsCount]);
 
@@ -214,9 +215,9 @@ export default function DataTable() {
                   case 'volumeUSD':
                     // Add your custom rendering for volumeUSD here
                     return <TableCell >${formatNumber(getKeyValue(item, columnKey))}</TableCell>;
-                    case 'feeUSD':
-                      // Add your custom rendering for feeUSD here
-                      return <TableCell >${formatNumber(getKeyValue(item, columnKey))}</TableCell>;
+                  case 'feeUSD':
+                    // Add your custom rendering for feeUSD here
+                    return <TableCell >${formatNumber(getKeyValue(item, columnKey))}</TableCell>;
                   case 'txCount':
                     // Add your custom rendering for txCount here
                     return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
